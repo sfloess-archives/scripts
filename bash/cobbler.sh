@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. /home/sfloess/Development/github/FlossWare/scripts/bash/cobbler-utils.sh
+. `dirname ${BASH_SOURCE[0]}`/../scripts/bash/cobbler-utils.sh
 
 addDistros() {
 	distro-add  CentOS-7.1-x86_64             /root/distro/iso/CentOS-7-x86_64-Everything-1503-01.iso   /root/distro/content/CentOS-7.1-x86_64

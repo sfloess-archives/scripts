@@ -1,2 +1,4 @@
 [submodule "scripts"]
 	branch = master
+	path = scripts
+	url = git@github.com:FlossWare/scripts
