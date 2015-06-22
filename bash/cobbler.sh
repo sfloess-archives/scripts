@@ -31,12 +31,14 @@ addProfiles() {
     FEDORA_KSMETA_DATA="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com p0 packages=koan operatingSystem=fedora operatingSystemVersion=22"
 
 	profile-add  CentOS-7.1-host-x86_64  CentOS-7.1-x86_64        "${CENTOS_REPOS}"  "${KICKSTART}"  "${ENTERPISE_KSMETA_DATA}"
-	profile-add  RHEL-7.1-host-x86_64    RHEL-Server-7.1-x86_64   "${REHL_REPOS}"    "${KICKSTART}"  "${ENTERPISE_KSMETA_DATA}"
+	profile-add  RHEL-7.1-host-x86_64    RHEL-Server-7.1-x86_64   "${RHEL_REPOS}"    "${KICKSTART}"  "${ENTERPISE_KSMETA_DATA}"
 	profile-add  Fedora-22-host-x86_64   Fedora-Server-22-x86_64  "${FEDORA_REPOS}"  "${KICKSTART}"  "${FEDORA_KSMETA_DATA}"     "nogpt"
 }
 
 addSystems() {
-    KSMETA_DATA="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com authconfig=--nisdomain=flossware.com packages=koan,re    dhat-lsb lvmDisks=sda,sdb"
+    system-remove-all
+
+    KSMETA_DATA="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com authconfig=--nisdomain=flossware.com packages=koan,redhat-lsb lvmDisks=sda,sdb"
 
     system-add centos-7.1-x86-64  CentOS-7.1-host-x86_64
     system-add rhel-7.1-x86-64    RHEL-7.1-host-x86_64
