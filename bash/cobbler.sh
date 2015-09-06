@@ -10,9 +10,9 @@ addDistros() {
     distro-add        RHEL-7.1-x86_64          /root/distro/iso/rhel-server-7.1-x86_64-dvd.iso
     distro-add        Fedora-22-x86_64         /root/distro/iso/Fedora-Server-DVD-x86_64-22.iso
 
-	distro-add-live   RHEL-7.1-Atomic-x86_64   /root/distro/iso/rhel-atomic-installer-7.1-1.x86_64.iso
-	distro-add-live   CentOS-7.1-Atomic-x86_64 /root/distro/iso/CentOS-Atomic-Host-7.1.2-Installer.iso
-	distro-add-live   Fedora-22-Atomic-x86_64  /root/distro/iso/Fedora-Cloud_Atomic-x86_64-22.iso
+    distro-add-live   RHEL-7.1-Atomic-x86_64   /root/distro/iso/rhel-atomic-installer-7.1-1.x86_64.iso
+    distro-add-live   CentOS-7.1-Atomic-x86_64 /root/distro/iso/CentOS-Atomic-Host-7.1.2-Installer.iso
+    distro-add-live   Fedora-22-Atomic-x86_64  /root/distro/iso/Fedora-Cloud_Atomic-x86_64-22.iso
 
     cobbler-exec distro edit --name="CentOS-7.1-x86_64"         --ksmeta="tree=http://@@server@@/cblr/links/CentOS-7.1-x86_64 ${ENTERPISE_KSMETA_DATA}"
     cobbler-exec distro edit --name="RHEL-7.1-x86_64"           --ksmeta="tree=http://@@server@@/cblr/links/RHEL-7.1-x86_64 ${ENTERPISE_KSMETA_DATA}"
@@ -86,4 +86,3 @@ createNetwork() {
 }
 
 createNetwork
-
