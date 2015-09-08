@@ -6,20 +6,13 @@ addDistros() {
     ENTERPISE_KSMETA_DATA="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com packages=koan,redhat-lsb"
     FEDORA_KSMETA_DATA="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com p0 packages=koan operatingSystem=fedora operatingSystemVersion=22"
 
-    distro-add        CentOS-7.1-x86_64        /root/distro/iso/CentOS-7-x86_64-Everything-1503-01.iso
-    distro-add        RHEL-7.1-x86_64          /root/distro/iso/rhel-server-7.1-x86_64-dvd.iso
-    distro-add        Fedora-22-x86_64         /root/distro/iso/Fedora-Server-DVD-x86_64-22.iso
+    distro-add        CentOS-7.1-x86_64        /root/distro/iso/CentOS-7-x86_64-Everything-1503-01.iso --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-7.1-x86_64          /root/distro/iso/rhel-server-7.1-x86_64-dvd.iso         --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        Fedora-22-x86_64         /root/distro/iso/Fedora-Server-DVD-x86_64-22.iso        --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
-    distro-add-live   RHEL-7.1-Atomic-x86_64   /root/distro/iso/rhel-atomic-installer-7.1-1.x86_64.iso
-    distro-add-live   CentOS-7.1-Atomic-x86_64 /root/distro/iso/CentOS-Atomic-Host-7.1.2-Installer.iso
-    distro-add-live   Fedora-22-Atomic-x86_64  /root/distro/iso/Fedora-Cloud_Atomic-x86_64-22.iso
-
-    cobbler-exec distro edit --name="CentOS-7.1-x86_64"         --ksmeta="tree=http://@@server@@/cblr/links/CentOS-7.1-x86_64 ${ENTERPISE_KSMETA_DATA}"
-    cobbler-exec distro edit --name="RHEL-7.1-x86_64"           --ksmeta="tree=http://@@server@@/cblr/links/RHEL-7.1-x86_64 ${ENTERPISE_KSMETA_DATA}"
-    cobbler-exec distro edit --name="Fedora-22-x86_64"          --ksmeta="tree=http://@@server@@/cblr/links/Fedora-22-x86_64 ${FEDORA_KSMETA_DATA}"
-    cobbler-exec distro edit --name="RHEL-7.1-Atomic-x86_64"    --ksmeta="tree=http://@@server@@/cblr/links/RHEL-7.1-Atomic-x86_64 ${ENTERPISE_KSMETA_DATA}"
-    cobbler-exec distro edit --name="CentOS-7.1-Atomic-x86_64"  --ksmeta="tree=http://@@server@@/cblr/links/CentOS-7.1-Atomic-x86_64 ${ENTERPISE_KSMETA_DATA}"
-    cobbler-exec distro edit --name="Fedora-22-Atomic-x86_64"   --ksmeta="tree=http://@@server@@/cblr/links/Fedora-22-Atomic-x86_64 ${FEDORA_KSMETA_DATA}"
+	distro-add-live   RHEL-7.1-Atomic-x86_64   /root/distro/iso/rhel-atomic-installer-7.1-1.x86_64.iso --ksmeta="${ENTERPISE_KSMETA_DATA}"
+	distro-add-live   CentOS-7.1-Atomic-x86_64 /root/distro/iso/CentOS-Atomic-Host-7.1.2-Installer.iso --ksmeta="${ENTERPISE_KSMETA_DATA}"
+	distro-add-live   Fedora-22-Atomic-x86_64  /root/distro/iso/Fedora-Cloud_Atomic-x86_64-22.iso      --ksmeta="${FEDORA_KSMETA_DATA}"
 }
 
 addRepos() {
@@ -47,22 +40,22 @@ addProfiles() {
 }
 
 addHosts() {
-    cobbler-exec system add --name="host-1" --profile="CentOS-7.1-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8"
-    cobbler-exec system add --name="host-2" --profile="CentOS-7.1-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"
+    cobbler-exec system add --name="host-1" --hostname="host-1" --profile="CentOS-7.1-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8"
+    cobbler-exec system add --name="host-2" --hostname="host-2" --profile="CentOS-7.1-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"
 }
 
 addVms() {
-    cobbler-exec system add --name="centos-1"        --profile="CentOS-7.1-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="rhel-1"          --profile="RHEL-7.1-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="centos-1"  --hostname="centos-1"  --profile="CentOS-7.1-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="rhel-1"    --hostname="rhel-1"    --profile="RHEL-7.1-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
 
-    cobbler-exec system add --name="rhel-atomic-1"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="rhel-atomic-2"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="rhel-atomic-3"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="rhel-atomic-4"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="centos-atomic-1" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="centos-atomic-2" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="centos-atomic-3" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
-    cobbler-exec system add --name="centos-atomic-4" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="rhel-atomic-1"   --hostname="rhel-atomic-1"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="rhel-atomic-2"   --hostname="rhel-atomic-2"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="rhel-atomic-3"   --hostname="rhel-atomic-3"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="rhel-atomic-4"   --hostname="rhel-atomic-4"   --profile="RHEL-7.1-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="centos-atomic-1" --hostname="centos-atomic-1" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="centos-atomic-2" --hostname="centos-atomic-2" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="centos-atomic-3" --hostname="centos-atomic-3" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
+    cobbler-exec system add --name="centos-atomic-4" --hostname="centos-atomic-4" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096"
 }
 
 addSystems() {
