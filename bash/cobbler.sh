@@ -8,7 +8,7 @@ addDistros() {
 
     distro-add        CentOS-5.11-x86_64       /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel5"
     distro-add        CentOS-6.7-x86_64        /root/distro/iso/CentOS-6.7-x86_64-bin-DVD1.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel6"
-    distro-add        CentOS-7.1-x86_64        /root/distro/iso/CentOS-7-x86_64-Everything-1503-01.iso  --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        CentOS-7.2-x86_64        /root/distro/iso/CentOS-7-x86_64-Everything-1511.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        RHEL-7.2-x86_64          /root/distro/iso/rhel-server-7.2-x86_64-dvd.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        Fedora-23-x86_64         /root/distro/iso/Fedora-Server-DVD-x86_64-23.iso         --ksmeta="${FEDORA_KSMETA_DATA}"
 
@@ -45,7 +45,7 @@ addProfiles() {
 
     RHEL_REPOS="Epel-7"
 
-    FEDORA__23REPOS="Fedora-23-everything Fedora-23-updates"
+    FEDORA_23_REPOS="Fedora-23-everything Fedora-23-updates"
 
     STANDARD_KICKSTART="/var/lib/cobbler/kickstarts/system.ks"
 
@@ -55,7 +55,7 @@ addProfiles() {
 
     cobbler-exec profile edit --name="CentOS-5.11-x86_64"       --distro="CentOS-5.11-x86_64"       --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_5_REPOS}"
     cobbler-exec profile edit --name="CentOS-6.7-x86_64"        --distro="CentOS-6.7-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_6_REPOS}"
-    cobbler-exec profile edit --name="CentOS-7.1-x86_64"        --distro="CentOS-7.1-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_7_REPOS}"
+    cobbler-exec profile edit --name="CentOS-7.2-x86_64"        --distro="CentOS-7.2-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_7_REPOS}"
 
     cobbler-exec profile edit --name="RHEL-7.2-x86_64"          --distro="RHEL-7.2-x86_64"          --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
     cobbler-exec profile edit --name="Fedora-23-x86_64"         --distro="Fedora-23-x86_64"         --kickstart="${STANDARD_KICKSTART}" --repos="${FEDORA_23_REPOS}"
@@ -67,11 +67,11 @@ addProfiles() {
 
 addHosts() {
     cobbler-exec system add --name="host-1" --hostname="host-1" --profile="Fedora-23-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com  authconfig=--nisdomain=flossware.com packages=@virtualization,koan,redhat-lsb,xen,rsync,libvirt-daemon-driver-xen,libvirt-daemon-xen,virt-manager,libvirt-daemon-config-network,libvirt-daemon-driver-network,virt-manager,virt-viewer,libvirt-daemon-driver-libxl lvmDisks=sda,sdb"
-    cobbler-exec system add --name="host-2" --hostname="host-2" --profile="CentOS-7.1-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"   --ksmeta="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com  authconfig=--nisdomain=flossware.com packages=koan,redhat-lsb lvmDisks=sda"
+    cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7.2-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"   --ksmeta="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com  authconfig=--nisdomain=flossware.com packages=koan,redhat-lsb lvmDisks=sda,sdb"
 }
 
 addXenVms() {
-    cobbler-exec system add --name="centos-workstation-xen"  --hostname="centos-workstation-xen"   --profile="CentOS-7.1-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
+    cobbler-exec system add --name="centos-workstation-xen"  --hostname="centos-workstation-xen"   --profile="CentOS-7.2-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
     cobbler-exec system add --name="rhel-workstation-xen"    --hostname="rhel-workstation-xen"     --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
     cobbler-exec system add --name="fedora-workstation-xen"  --hostname="fedora-workstation-xen"   --profile="Fedora-23-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
     cobbler-exec system add --name="centos-atomic-xen"       --hostname="centos-atomic-xen"        --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
@@ -82,7 +82,7 @@ addXenVms() {
 }
 
 addKvmVms() {
-    cobbler-exec system add --name="centos-workstation"   --hostname="centos-workstation"    --profile="CentOS-7.1-x86_64"       --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
+    cobbler-exec system add --name="centos-workstation"   --hostname="centos-workstation"    --profile="CentOS-7.2-x86_64"       --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
     cobbler-exec system add --name="rhel-workstation"     --hostname="rhel-workstation"      --profile="RHEL-7.2-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
     cobbler-exec system add --name="fedora-workstation"   --hostname="fedora-workstation"    --profile="Fedora-23-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
 
