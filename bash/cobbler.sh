@@ -6,8 +6,6 @@ addDistros() {
     ENTERPISE_KSMETA_DATA="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com packages=koan,redhat-lsb"
     FEDORA_KSMETA_DATA="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com p0 packages=koan operatingSystem=fedora operatingSystemVersion=23"
 
-    distro-add        CentOS-5.11-x86_64       /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel5"
-    distro-add        CentOS-6.7-x86_64        /root/distro/iso/CentOS-6.7-x86_64-bin-DVD1.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel6"
     distro-add        CentOS-7.2-x86_64        /root/distro/iso/CentOS-7-x86_64-Everything-1511.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        RHEL-7.2-x86_64          /root/distro/iso/rhel-server-7.2-x86_64-dvd.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        Fedora-23-x86_64         /root/distro/iso/Fedora-Server-DVD-x86_64-23.iso         --ksmeta="${FEDORA_KSMETA_DATA}"
@@ -18,20 +16,10 @@ addDistros() {
 }
 
 addRepos() {
-    cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-extras"      --mirror="http://mirror.centos.org/centos-5/5/extras/x86_64"
-    cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-centosplus"  --mirror="http://mirror.centos.org/centos-5/5/centosplus/x86_64"
-    cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-updates"     --mirror="http://mirror.centos.org/centos-5/5/updates/x86_64"
-
-    cobbler-exec repo add --mirror-locally="0" --name="CentOS-6-extras"      --mirror="http://mirror.centos.org/centos-6/6/extras/x86_64"
-    cobbler-exec repo add --mirror-locally="0" --name="CentOS-6-centosplus"  --mirror="http://mirror.centos.org/centos-6/6/centosplus/x86_64"
-    cobbler-exec repo add --mirror-locally="0" --name="CentOS-6-updates"     --mirror="http://mirror.centos.org/centos-6/6/updates/x86_64"
-
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-7-extras"      --mirror="http://mirror.centos.org/centos-7/7/extras/x86_64"
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-7-centosplus"  --mirror="http://mirror.centos.org/centos-7/7/centosplus/x86_64"
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-7-updates"     --mirror="http://mirror.centos.org/centos-7/7/updates/x86_64"
 
-    cobbler-exec repo add --mirror-locally="0" --name="Epel-5"               --mirror="http://dl.fedoraproject.org/pub/epel/5/x86_64"
-    cobbler-exec repo add --mirror-locally="0" --name="Epel-6"               --mirror="http://dl.fedoraproject.org/pub/epel/6/x86_64"
     cobbler-exec repo add --mirror-locally="0" --name="Epel-7"               --mirror="http://dl.fedoraproject.org/pub/epel/7/x86_64"
 
     cobbler-exec repo add --mirror-locally="0" --name="Fedora-23-everything" --mirror="http://dl.fedoraproject.org/pub/fedora/linux/releases/23/Everything/x86_64/os"
@@ -39,8 +27,6 @@ addRepos() {
 }
 
 addProfiles() {
-    CENTOS_5_REPOS="Epel-5 CentOS-5-extras CentOS-5-centosplus CentOS-5-updates"
-    CENTOS_6_REPOS="Epel-6 CentOS-6-extras CentOS-6-centosplus CentOS-6-updates"
     CENTOS_7_REPOS="Epel-7 CentOS-7-extras CentOS-7-centosplus CentOS-7-updates"
 
     RHEL_REPOS="Epel-7"
@@ -53,8 +39,6 @@ addProfiles() {
     RHEL_ATOMIC_KICKSTART="/var/lib/cobbler/kickstarts/rhel-atomic.ks"
     FEDORA_ATOMIC_KICKSTART="/var/lib/cobbler/kickstarts/fedora-atomic.ks"
 
-    cobbler-exec profile edit --name="CentOS-5.11-x86_64"       --distro="CentOS-5.11-x86_64"       --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_5_REPOS}"
-    cobbler-exec profile edit --name="CentOS-6.7-x86_64"        --distro="CentOS-6.7-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_6_REPOS}"
     cobbler-exec profile edit --name="CentOS-7.2-x86_64"        --distro="CentOS-7.2-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_7_REPOS}"
 
     cobbler-exec profile edit --name="RHEL-7.2-x86_64"          --distro="RHEL-7.2-x86_64"          --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
@@ -73,21 +57,19 @@ addHosts() {
 addXenVms() {
     cobbler-exec system add --name="centos-workstation-xen"  --hostname="centos-workstation-xen"   --profile="CentOS-7.2-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
     cobbler-exec system add --name="rhel-workstation-xen"    --hostname="rhel-workstation-xen"     --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
-    cobbler-exec system add --name="fedora-workstation-xen"  --hostname="fedora-workstation-xen"   --profile="Fedora-23-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
+    cobbler-exec system add --name="fedora-workstation-xen"  --hostname="fedora-workstation-xen"   --profile="Fedora-23-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="50" --virt-ram="2048" --virt-bridge="xenbr0"
     cobbler-exec system add --name="centos-atomic-xen"       --hostname="centos-atomic-xen"        --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
     cobbler-exec system add --name="rhel-atomic-xen"         --hostname="rhel-atomic-xen"          --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
     cobbler-exec system add --name="fedora-atomic-xen"       --hostname="fedora-atomic-xen"        --profile="Fedora-23-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
-    cobbler-exec system add --name="dd-wrt-builder-xen"      --hostname="dd-wrt-builder-xen"       --profile="Fedora-23-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="xenbr0"
 
 }
 
 addKvmVms() {
     cobbler-exec system add --name="centos-workstation"   --hostname="centos-workstation"    --profile="CentOS-7.2-x86_64"       --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
     cobbler-exec system add --name="rhel-workstation"     --hostname="rhel-workstation"      --profile="RHEL-7.2-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
-    cobbler-exec system add --name="fedora-workstation"   --hostname="fedora-workstation"    --profile="Fedora-23-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
+    cobbler-exec system add --name="fedora-workstation"   --hostname="fedora-workstation"    --profile="Fedora-23-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
 
-    cobbler-exec system add --name="dd-wrt-builder"       --hostname="dd-wrt-builder"        --profile="Fedora-23-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="40" --virt-ram="8192" --virt-bridge="bridge0"
-    cobbler-exec system add --name="docker-builder"       --hostname="docker-builder"        --profile="RHEL-7.2-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="8192" --virt-bridge="bridge0"
+    cobbler-exec system add --name="docker-builder"       --hostname="docker-builder"        --profile="RHEL-7.2-x86_64"         --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
 
     cobbler-exec system add --name="rhel-atomic-master"   --hostname="rhel-atomic-master"   --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096" --virt-bridge="bridge0"
     cobbler-exec system add --name="rhel-atomic-pod-1"    --hostname="rhel-atomic-pod-1"    --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="4096" --virt-bridge="bridge0"
