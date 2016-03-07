@@ -58,9 +58,9 @@ addHosts() {
 }
 
 addXenVms() {
-    cobbler-exec system add --name="centos-xen"  --hostname="centos-xen"   --profile="CentOS-7.2-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus="4"
-    cobbler-exec system add --name="rhel-xen"    --hostname="rhel-xen"     --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus="4"
-    cobbler-exec system add --name="fedora-xen"  --hostname="fedora-xen"   --profile="Fedora-23-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus="4"
+    cobbler-exec system add --name="centos-xen"  --hostname="centos-xen"   --profile="CentOS-7.2-x86_64" --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus="4"
+    cobbler-exec system add --name="rhel-xen"    --hostname="rhel-xen"     --profile="RHEL-7.2-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus="4"
+    cobbler-exec system add --name="fedora-xen"  --hostname="fedora-xen"   --profile="Fedora-23-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus="4"
 
     cobbler-exec system add --name="centos-atomic-xen"       --hostname="centos-atomic-xen" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4"
     cobbler-exec system add --name="rhel-atomic-xen"         --hostname="rhel-atomic-xen"   --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4"
