@@ -68,7 +68,7 @@ addXenVms() {
 
     cobbler-exec system add --name="admin"         --hostname="admin" --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=4
     cobbler-exec system add --name="atomic-master" --hostname="atomic-master"      --profile="RHEL-Atomic-7.2-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=4
-    cobbler-exec system add --name="workstation"   --hostname="rhel-workstation-xen" --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=4
+    cobbler-exec system add --name="workstation"   --hostname="workstation" --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=4
 }
 
 addKvmVms() {
@@ -78,8 +78,9 @@ addKvmVms() {
 
     cobbler-exec system add --name="builder"      --hostname="builder"     --profile="RHEL-7.2-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
 
-    cobbler-exec system add --name="atomic-pod-2" --hostname="atomic-pod-2"    --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
-    cobbler-exec system add --name="atomic-pod-2" --hostname="atomic-pod-2"    --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
+    cobbler-exec system add --name="atomic-01" --hostname="atomic-01"    --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
+    cobbler-exec system add --name="atomic-02" --hostname="atomic-02"    --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
+    cobbler-exec system add --name="atomic-03" --hostname="atomic-03"    --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
 
     cobbler-exec system add --name="rhel-atomic-kvm"   --hostname="rhel-atomic-kvm"   --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="centos-atomic-kvm" --hostname="centos-atomic-kvm" --profile="CentOS-7.1-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0"
