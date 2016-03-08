@@ -66,8 +66,9 @@ addXenVms() {
     cobbler-exec system add --name="rhel-atomic-xen"         --hostname="rhel-atomic-xen"   --profile="RHEL-7.2-Atomic-x86_64"   --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4"
     cobbler-exec system add --name="fedora-atomic-xen"       --hostname="fedora-atomic-xen" --profile="Fedora-23-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4"
 
-    cobbler-exec system add --name="admin"         --hostname="admin" --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=4
-    cobbler-exec system add --name="atomic-master" --hostname="atomic-master"      --profile="RHEL-7.2-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=4
+    cobbler-exec system add --name="admin"         --hostname="admin" --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=1
+    cobbler-exec system add --name="atomic-master" --hostname="atomic-master"      --profile="RHEL-7.2-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=1
+    cobbler-exec system add --name="db"   --hostname="db" --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="25" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=1
     cobbler-exec system add --name="workstation"   --hostname="workstation" --profile="RHEL-7.2-x86_64"          --interface="eth0"  --mac-address="random" --virt-type="xenpv" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta="rootPartition=ext4" --virt-cpus=4
 }
 
