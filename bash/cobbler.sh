@@ -10,6 +10,8 @@ addDistros() {
     distro-add        RHEL-7.2-x86_64          /root/distro/iso/rhel-server-7.2-x86_64-dvd.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        Fedora-23-x86_64         /root/distro/iso/Fedora-Server-DVD-x86_64-23.iso         --ksmeta="${FEDORA_KSMETA_DATA}"
 
+    distro-add-rhev   RHEVH-7.2-x86_64         /root/distro/iso/rhev-hypervisor7-7.2-20160302.1.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7" --breed="redhat"
+
     distro-add-atomic CentOS-7.1-Atomic-x86_64 /root/distro/iso/CentOS-Atomic-Host-7-Installer.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
     distro-add-atomic RHEL-7.2-Atomic-x86_64   /root/distro/iso/rhel-atomic-installer-7.2-10.x86_64.iso --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
     distro-add-atomic Fedora-23-Atomic-x86_64  /root/distro/iso/Fedora-Cloud_Atomic-x86_64-23.iso       --ksmeta="${FEDORA_KSMETA_DATA}"    --arch="x86_64" --os-version="fedora23"
@@ -46,6 +48,8 @@ addProfiles() {
     cobbler-exec profile edit --name="RHEL-7.2-x86_64"          --distro="RHEL-7.2-x86_64"          --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
     cobbler-exec profile edit --name="Fedora-23-x86_64"         --distro="Fedora-23-x86_64"         --kickstart="${STANDARD_KICKSTART}" --repos="${FEDORA_23_REPOS}"
 
+    cobbler-exec profile add  --name="RHEVH-7.2-x86_64"         --distro="RHEVH-7.2-x86_64"         --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
+
     cobbler-exec profile add  --name="CentOS-7.1-Atomic-x86_64" --distro="CentOS-7.1-Atomic-x86_64" --kickstart="${CENTOS_ATOMIC_KICKSTART}"
     cobbler-exec profile add  --name="RHEL-7.2-Atomic-x86_64"   --distro="RHEL-7.2-Atomic-x86_64"   --kickstart="${RHEL_ATOMIC_KICKSTART}"
     cobbler-exec profile add  --name="Fedora-23-Atomic-x86_64"  --distro="Fedora-23-Atomic-x86_64"  --kickstart="${FEDORA_ATOMIC_KICKSTART}"
@@ -54,7 +58,7 @@ addProfiles() {
 addHosts() {
     cobbler-exec system add --name="host-1" --hostname="host-1" --profile="CentOS-7.2-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com authconfig=--nisdomain=flossware.com packages=koan,redhat-lsb lvmDisks=sda,sdb"
 
-    cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7.2-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"   --ksmeta="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com  authconfig=--nisdomain=flossware.com packages=koan,redhat-lsb lvmDisks=sda,sdb"
+    cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEVH-7.2-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"   --ksmeta="auth=-useshadow,--enablemd5,--enablenis,--nisdomain=flossware.com  authconfig=--nisdomain=flossware.com packages=koan,redhat-lsb lvmDisks=sda,sdb"
 }
 
 addXenVms() {
