@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    ifc: "{{ ansible_default_ipv4.interface }}"
+    val: "ansible_{{ ifc }}"
+    device: "ansible_{{ ifc }}.device"
+    real: '{{ device }}'
+  tasks:
+  - name: Emit data
+    debug: msg="The value is {{ ifc }} and val {{ val }} and device {{ device }}    real {{ real }}  {{ ansible_default_ipv4.interface }}"
