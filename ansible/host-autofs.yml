@@ -1,0 +1,7 @@
+---
+
+- name: Test it
+  hosts: all
+
+  roles:
+  - autofs

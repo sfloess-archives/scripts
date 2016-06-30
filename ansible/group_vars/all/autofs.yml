@@ -1,0 +1,18 @@
+---
+
+autofs_master:
+  - name: admin-ap
+    shares:
+      - "jffs    -fstype=cifs,rw,noperm,user={{ admin-ap_user }},pass={{ admin-ap_password }} ://admin-ap/jffs"
+      - "opt     -fstype=cifs,rw,noperm,user={{ admin-ap_user }},pass={{ admin-ap_password }} ://admin-ap/opt"
+      - "backups -fstype=cifs,rw,noperm,user={{ admin-ap_user }},pass={{ admin-ap_password }} ://admin-ap/backups"
+      - "media   -fstype=cifs,rw,noperm,user={{ admin-ap_user }},pass={{ admin-ap_password }} ://admin-ap/media"
+      - "shared  -fstype=cifs,rw,noperm,user={{ admin-ap_user }},pass={{ admin-ap_password }} ://admin-ap/shared"
+  - name: admin-server
+    shares:
+      - "debian  -rw,no_root_squash  admin-server:/mnt/HD/HD_a2/debian"
+      - "home    -rw,no_root_squash  admin-server:/mnt/HD/HD_a2/home"
+      - "root    -rw,no_root_squash  admin-server:/mnt/HD/HD_a2" 
+  - name: Amy
+    shares:
+      - "backups   -fstype=cifs,rw,noperm,user={{ amy_user }},pass={{ amy_password }}  ://192.168.168.23/backups"
