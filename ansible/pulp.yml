@@ -1,0 +1,9 @@
+---
+
+- name: Setup pulp
+  hosts: pulp
+
+  roles:
+  - subscriptionManager
+  - security
+  - epel

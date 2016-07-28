@@ -1,0 +1,10 @@
+---
+
+- name: Setup host
+  hosts: host-1
+
+  roles:
+  - security
+  - epel
+  - centosXenVirtualization
+  - autofs

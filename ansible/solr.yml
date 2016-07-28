@@ -1,0 +1,9 @@
+---
+
+- name: Setup Solr
+  hosts: solr
+
+  roles:
+  - subscriptionManager
+  - security
+  - epel

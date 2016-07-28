@@ -1,0 +1,11 @@
+---
+
+- name: Setup host-2
+  hosts: host-2
+
+  roles:
+  - subscriptionMgr
+  - security
+  - epel
+  - kvmVirtualization
+  - autofs
