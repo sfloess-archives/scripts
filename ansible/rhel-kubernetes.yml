@@ -1,0 +1,9 @@
+---
+
+- name: Setup RHEL Kubernetes VMs
+  hosts: rhel-kubernetes
+
+  roles:
+  - subscriptionManager
+  - security
+  - epel

@@ -1,0 +1,7 @@
+---
+
+- name: Setup Atomic Kubernetes VMs
+  hosts: atomic-kubernetes
+
+  roles:
+  - subscriptionManagerRegister

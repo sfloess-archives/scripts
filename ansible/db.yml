@@ -1,0 +1,9 @@
+---
+
+- name: Setup db
+  hosts: db
+
+  roles:
+  - subscriptionManager
+  - security
+  - epel
