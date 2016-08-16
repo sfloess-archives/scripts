@@ -4,4 +4,5 @@
   hosts: atomic-kubernetes
 
   roles:
+  - selinux
   - subscriptionManagerRegister
