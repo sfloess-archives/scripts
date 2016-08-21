@@ -3,8 +3,8 @@
 . `dirname ${BASH_SOURCE[0]}`/../scripts/bash/cobbler-utils.sh
 
 addDistros() {
-    ENTERPISE_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" packages=koan,redhat-lsb'
-    FEDORA_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" p0 packages=koan"'
+    ENTERPISE_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" packages="koan redhat-lsb"'
+    FEDORA_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" p0 packages="koan"'
 
     distro-add        CentOS-5-x86_64          /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.8-x86_64-bin-DVD1.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}"
