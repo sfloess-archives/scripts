@@ -6,8 +6,8 @@ addDistros() {
     ENTERPISE_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" packages=koan,redhat-lsb'
     FEDORA_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" p0 packages=koan"'
 
-    distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-6.8-x86_64-bin-DVD1.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        CentOS-5-x86_64          /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.8-x86_64-bin-DVD1.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1511.iso     --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-7.2-x86_64-dvd.iso          --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        Fedora-24-x86_64         /root/distro/iso/Fedora-Server-DVD-x86_64-24-1.2.iso.iso --ksmeta="${FEDORA_KSMETA_DATA}"
