@@ -1,0 +1,8 @@
+---
+
+- name: Setup Atomic Mater VM
+  hosts: atomic-master
+
+  roles:
+  - selinux
+  - subscriptionManagerRegister
