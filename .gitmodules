@@ -1,4 +1,4 @@
-[submodule "scripts"]
+[submodule "flossware-scripts"]
+	path = flossware-scripts
+	url = git@github.com:FlossWare/scripts.git
 	branch = master
-	path = scripts
-	url = git@github.com:FlossWare/scripts
