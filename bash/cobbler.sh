@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. `dirname ${BASH_SOURCE[0]}`/../scripts/bash/cobbler-utils.sh
+. `dirname ${BASH_SOURCE[0]}`/../flossware-scripts/bash/cobbler-utils.sh
 
 # ---------------------------------------------------------
 # Add distro definitions...
