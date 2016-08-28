@@ -87,9 +87,9 @@ addProfiles() {
 # Add host definitions...
 # ---------------------------------------------------------
 addHosts() {
-    cobbler-exec system add --name="host-1" --hostname="host-1" --profile="CentOS-7-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta='lvmDisks=sda sdb'
+    cobbler-exec system add --name="host-1" --hostname="host-1" --profile="CentOS-7-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta='lvmDisks="sda sdb"'
 
-    cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm" --ksmeta='lvmDisks=sda sdb sdc'
+    cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm" --ksmeta='lvmDisks="sda sdb sdc"'
 }
 
 # ---------------------------------------------------------
