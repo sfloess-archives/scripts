@@ -2,7 +2,12 @@
 
 . `dirname ${BASH_SOURCE[0]}`/../scripts/bash/cobbler-utils.sh
 
+# ---------------------------------------------------------
+# Add distro definitions...
+# ---------------------------------------------------------
 addDistros() {
+    remove-all
+
     ENTERPISE_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" packages="koan redhat-lsb"'
     FEDORA_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" p0 packages="koan"'
 
@@ -19,6 +24,9 @@ addDistros() {
     distro-add-atomic Fedora-24-Atomic-x86_64  /root/distro/iso/Fedora-Atomic-dvd-x86_64-24-20160721.0.iso --ksmeta="${FEDORA_KSMETA_DATA}"    --arch="x86_64" --os-version="fedora24"
 }
 
+# ---------------------------------------------------------
+# Add repo definitions...
+# ---------------------------------------------------------
 addRepos() {
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-extras"      --mirror="http://mirror.centos.org/centos-5/5/extras/x86_64"
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-centosplus"  --mirror="http://mirror.centos.org/centos-5/5/centosplus/x86_64"
@@ -40,7 +48,13 @@ addRepos() {
     cobbler-exec repo add --mirror-locally="0" --name="Fedora-24-updates"    --mirror="http://dl.fedoraproject.org/pub/fedora/linux/updates/24/x86_64"
 }
 
+# ---------------------------------------------------------
+# Add profile definitions...
+# ---------------------------------------------------------
 addProfiles() {
+    system-remove-all
+    profile-remove-all
+
     CENTOS_5_REPOS="Epel-5 CentOS-5-extras CentOS-5-centosplus CentOS-5-updates"
     CENTOS_6_REPOS="Epel-6 CentOS-6-extras CentOS-6-centosplus CentOS-6-updates"
     CENTOS_7_REPOS="Epel-7 CentOS-7-extras CentOS-7-centosplus CentOS-7-updates"
@@ -69,12 +83,18 @@ addProfiles() {
     cobbler-exec profile add  --name="Fedora-24-Atomic-x86_64" --distro="Fedora-24-Atomic-x86_64" --kickstart="${FEDORA_ATOMIC_KICKSTART}"
 }
 
+# ---------------------------------------------------------
+# Add host definitions...
+# ---------------------------------------------------------
 addHosts() {
     cobbler-exec system add --name="host-1" --hostname="host-1" --profile="CentOS-7-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta='lvmDisks=sda sdb'
 
     cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm" --ksmeta='lvmDisks=sda sdb sdc'
 }
 
+# ---------------------------------------------------------
+# Add Xen virtual machine definitions...
+# ---------------------------------------------------------
 addXenVms() {
     XEN_VM_KSMETA_DATA='bootloader="--location=mbr --boot-drive=xvda"'
 
@@ -95,6 +115,9 @@ addXenVms() {
     cobbler-exec system add --name="solr"          --hostname="solr"          --profile="RHEL-7-x86_64"        --interface="eth0"  --mac-address="00:16:3e:7f:38:c8" --virt-type="xenpv" --virt-file-size="100" --virt-ram="3400" --virt-bridge="bridge0" --virt-cpus=4 --ksmeta="${XEN_VM_KSMETA_DATA}"
 }
 
+# ---------------------------------------------------------
+# Add KVM virtual machine definitions...
+# ---------------------------------------------------------
 addKvmVms() {
     cobbler-exec system add --name="centos-5-kvm"  --hostname="centos-5-kvm"  --profile="CentOS-5-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="centos-6-kvm"  --hostname="centos-6-kvm"  --profile="CentOS-6-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
@@ -113,11 +136,17 @@ addKvmVms() {
     cobbler-exec system add --name="atomic-03" --hostname="atomic-03" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="50" --virt-ram="8192" --virt-bridge="bridge0"
 }
 
+# ---------------------------------------------------------
+# Add virtual machine definitions...
+# ---------------------------------------------------------
 addVms() {
     addXenVms
     addKvmVms
 }
 
+# ---------------------------------------------------------
+# Add system definitions...
+# ---------------------------------------------------------
 addSystems() {
     system-remove-all
 
@@ -127,6 +156,9 @@ addSystems() {
     system-create-iso
 }
 
+# ---------------------------------------------------------
+# Create the entire network...
+# ---------------------------------------------------------
 createNetwork() {
     remove-all
 
@@ -138,4 +170,20 @@ createNetwork() {
     addSystems
 }
 
-createNetwork
+# ---------------------------------------------------------
+# Determine what to definitions to add...
+# ---------------------------------------------------------
+case "$1" in
+    systems)
+        addSystems
+        ;;
+    profiles)
+        addProfiles
+        ;;
+    distros)
+        addDistros
+        ;;
+    *)
+        createNetwork
+        ;;
+esac
