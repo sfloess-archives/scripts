@@ -1,0 +1,9 @@
+---
+
+- name: Setup host
+  hosts: host-1
+
+  roles:
+  - centos/yum/extras
+  - centos/yum/updates
+  - centos/yum/centosplus

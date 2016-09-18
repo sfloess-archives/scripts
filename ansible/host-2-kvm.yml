@@ -4,8 +4,8 @@
   hosts: host-2
 
   roles:
-  - subscriptionMgr
-  - security
-  - epel
-  - kvmVirtualization
-  - autofs
+  - operatingSystem/rhel/subscriptionManager
+  - common/security
+  - common/yum/repos/epel
+  - cloud/kvm
+  - common/autofs

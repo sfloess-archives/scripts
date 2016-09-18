@@ -1,0 +1,8 @@
+---
+
+- name: Setup Atomic
+  hosts: atomic
+
+  roles:
+  - common/security/selinux
+  - operatingSystem/rhel/subscriptionManager/register

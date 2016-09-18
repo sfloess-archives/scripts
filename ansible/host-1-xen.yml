@@ -4,7 +4,7 @@
   hosts: host-1
 
   roles:
-  - security
-  - epel
-  - centosXenVirtualization
-  - autofs
+  - common/security
+  - common/yum/repos/epel
+  - operatingSystem/centos/xen
+  - common/autofs

@@ -1,0 +1,7 @@
+---
+
+- name: Setup host-2
+  hosts: host-2
+
+  roles:
+  - rhel/subscriptionManager
