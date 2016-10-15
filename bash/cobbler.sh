@@ -129,6 +129,7 @@ addKvmVms() {
     cobbler-exec system add --name="rhel-7-atomic-kvm"    --hostname="rhel-atomic-kvm"   --profile="RHEL-7-Atomic-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0"
 
     cobbler-exec system add --name="workstation"   --hostname="workstation"   --profile="RHEL-7-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20"  --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="db"            --hostname="db"            --profile="RHEL-7-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=1
     cobbler-exec system add --name="atomic-master" --hostname="atomic-master" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=1
     cobbler-exec system add --name="pulp"          --hostname="pulp"          --profile="RHEL-7-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
 
