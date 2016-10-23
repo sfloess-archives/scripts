@@ -4,6 +4,6 @@
   hosts: db
 
   roles:
-  - subscriptionManager
-  - security
-  - epel
+  - operatingSystem/rhel/subscriptionManager
+  - common/security
+  - common/yum/epel

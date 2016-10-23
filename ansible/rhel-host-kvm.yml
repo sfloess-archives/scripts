@@ -1,11 +1,11 @@
 ---
 
-- name: Setup host-2
+- name: Setup RHEL KVM host
   hosts: all
 
   roles:
   - operatingSystem/rhel/subscriptionManager
   - common/security
-  - common/yum/repos/epel
+  - common/yum/epel
   - cloud/kvm
   - common/autofs

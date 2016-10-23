@@ -1,10 +1,11 @@
 ---
 
 - name: Setup host
-  hosts: workstation
+  hosts: all
 
   roles:
   - common/security
   - operatingSystem/rhel/subscriptionManager
-  - common/yum/repos/epel
+  - common/yum/epel
   - common/workstation
+  - common/autofs

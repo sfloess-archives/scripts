@@ -1,7 +1,7 @@
 ---
 
 - name: Setup Atomic
-  hosts: atomic
+  hosts: all
 
   roles:
   - common/security/selinux

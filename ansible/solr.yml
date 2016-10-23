@@ -4,6 +4,7 @@
   hosts: solr
 
   roles:
-  - subscriptionManager
-  - security
-  - epel
+  - operatingSystem/rhel/subscriptionManager
+  - common/security
+  - common/yum/epel
+  - common/autofs
