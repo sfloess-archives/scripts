@@ -1,0 +1,9 @@
+---
+
+- name: Setup Builder
+  hosts: builder
+
+  roles:
+  - operatingSystem/rhel/subscriptionManager
+  - common/security
+  - common/openWrtBuildSystem
