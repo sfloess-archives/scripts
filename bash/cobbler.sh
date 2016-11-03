@@ -14,7 +14,11 @@ addDistros() {
     distro-add        CentOS-5-x86_64          /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso        --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.8-x86_64-bin-DVD1.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1511.iso        --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-7.2-x86_64-dvd.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
+
+    distro-add        RHEL-5-x86_64            /root/distro/iso/rhel-server-5.11-x86_64-dvd.iso            --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-6-x86_64            /root/distro/iso/rhel-server-7.2-x86_64-dvd.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-6.8-x86_64-dvd.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
+
     distro-add        Fedora-24-x86_64         /root/distro/iso/Fedora-Server-dvd-x86_64-24-1.2.iso        --ksmeta="${FEDORA_KSMETA_DATA}"
 
     distro-add-rhev   RHEVH-7-x86_64           /root/distro/iso/rhev-hypervisor7-7.2-20160302.1.iso        --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7" --breed="redhat"
@@ -73,7 +77,10 @@ addProfiles() {
     cobbler-exec profile edit --name="CentOS-6-x86_64"         --distro="CentOS-6-x86_64"         --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_6_REPOS}"
     cobbler-exec profile edit --name="CentOS-7-x86_64"         --distro="CentOS-7-x86_64"         --kickstart="${STANDARD_KICKSTART}" --repos="${CENTOS_7_REPOS}"
 
+    cobbler-exec profile edit --name="RHEL-5-x86_64"           --distro="RHEL-5-x86_64"           --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
+    cobbler-exec profile edit --name="RHEL-6-x86_64"           --distro="RHEL-6-x86_64"           --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
     cobbler-exec profile edit --name="RHEL-7-x86_64"           --distro="RHEL-7-x86_64"           --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
+
     cobbler-exec profile edit --name="Fedora-24-x86_64"        --distro="Fedora-24-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${FEDORA_REPOS}"
 
     cobbler-exec profile add  --name="RHEVH-7-x86_64"          --distro="RHEVH-7-x86_64"          --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_REPOS}"
@@ -122,19 +129,20 @@ addKvmVms() {
     cobbler-exec system add --name="centos-6-kvm"  --hostname="centos-6-kvm"  --profile="CentOS-6-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="centos-7-kvm"  --hostname="centos-7-kvm"  --profile="CentOS-7-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="fedora-24-kvm" --hostname="fedora-24-kvm" --profile="Fedora-24-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
-    cobbler-exec system add --name="rhel-7-kvm"    --hostname="rhel-7-kvm"    --profile="RHEL-7-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="rhel-5-kvm"    --hostname="rhel-5-kvm"    --profile="RHEL-5-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="rhel-6-kvm"    --hostname="rhel-6-kvm"    --profile="RHEL-6-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
 
     cobbler-exec system add --name="centos-7-atomic-kvm"  --hostname="centos-atomic-kvm" --profile="CentOS-7-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="fedora-24-atomic-kvm" --hostname="fedora-atomic-kvm" --profile="Fedora-24-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="rhel-7-atomic-kvm"    --hostname="rhel-atomic-kvm"   --profile="RHEL-7-Atomic-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0"
 
-    cobbler-exec system add --name="workstation"   --hostname="workstation"   --profile="RHEL-7-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20"  --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
-    cobbler-exec system add --name="db"            --hostname="db"            --profile="RHEL-7-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=1
-    cobbler-exec system add --name="atomic-master" --hostname="atomic-master" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=1
-    cobbler-exec system add --name="pulp"          --hostname="pulp"          --profile="RHEL-7-x86_64"        --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
-
-    cobbler-exec system add --name="builder" --hostname="builder" --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="random" --virt-type="kvm" --virt-file-size="250" --virt-ram="16384"  --virt-bridge="bridge0" --virt-cpus=4
-    cobbler-exec system add --name="solr"    --hostname="solr"    --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="16000" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="workstation"   --hostname="workstation"   --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:79:79:11" --virt-type="kvm" --virt-file-size="20"  --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="db"            --hostname="db"            --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:63:0a:b7" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=1
+    cobbler-exec system add --name="atomic-master" --hostname="atomic-master" --profile="RHEL-7-Atomic-x86_64" --interface="eth0" --mac-address="00:16:3e:50:51:24" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=1
+    cobbler-exec system add --name="builder"       --hostname="builder"       --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:27:d5:50" --virt-type="kvm" --virt-file-size="250" --virt-ram="16384"  --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="solr"          --hostname="solr"          --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:42:2e:5d" --virt-type="kvm" --virt-file-size="100" --virt-ram="16384" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="neo4j"         --hostname="neo4j"         --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="52:54:00:5d:f3:1c" --virt-type="kvm" --virt-file-size="250" --virt-ram="16384"  --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="pulp"          --hostname="pulp"          --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:4e:fc:64" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
 
     cobbler-exec system add --name="atomic-01" --hostname="atomic-01" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="8192" --virt-bridge="bridge0"
     cobbler-exec system add --name="atomic-02" --hostname="atomic-02" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="8192" --virt-bridge="bridge0"
