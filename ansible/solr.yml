@@ -1,7 +1,7 @@
 ---
 
 - name: Setup Solr
-  hosts: solr
+  hosts: all
 
   roles:
   - operatingSystem/rhel/subscriptionManager

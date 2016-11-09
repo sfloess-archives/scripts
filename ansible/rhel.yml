@@ -1,9 +1,9 @@
 ---
 
 - name: Setup RHEL machines
-  hosts: rhel
+  hosts: all
 
   roles:
-  - subscriptionManager
-  - security
-  - epel
+  - operatingSystem/rhel/subscriptionManager
+  - common/security
+  - common/yum/epel
