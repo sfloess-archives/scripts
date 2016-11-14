@@ -1,0 +1,7 @@
+---
+
+- name: Setup host
+  hosts: all
+
+  roles:
+  - common/autofs
