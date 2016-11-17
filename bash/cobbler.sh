@@ -104,13 +104,13 @@ addHosts() {
 # Add virtual machine definitions...
 # ---------------------------------------------------------
 addVms() {
-    cobbler-exec system add --name="centos-5-kvm"  --hostname="centos-5-kvm"  --profile="CentOS-5-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="centos-5"'
-    cobbler-exec system add --name="centos-6-kvm"  --hostname="centos-6-kvm"  --profile="CentOS-6-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="centos-6"'
-    cobbler-exec system add --name="centos-7-kvm"  --hostname="centos-7-kvm"  --profile="CentOS-7-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="centos-7"'
-    cobbler-exec system add --name="fedora-24-kvm" --hostname="fedora-24-kvm" --profile="Fedora-24-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="fedora-24"'
-    cobbler-exec system add --name="rhel-5-kvm"    --hostname="rhel-5-kvm"    --profile="RHEL-5-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="rhel-5"'
-    cobbler-exec system add --name="rhel-6-kvm"    --hostname="rhel-6-kvm"    --profile="RHEL-6-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="rhel-6"'
-    cobbler-exec system add --name="rhel-7-kvm"    --hostname="rhel-7-kvm"    --profile="RHEL-7-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="rhel-7"'
+    cobbler-exec system add --name="centos-5-kvm"  --hostname="centos-5-kvm"  --profile="CentOS-5-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" 
+    cobbler-exec system add --name="centos-6-kvm"  --hostname="centos-6-kvm"  --profile="CentOS-6-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="centos-7-kvm"  --hostname="centos-7-kvm"  --profile="CentOS-7-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="fedora-24-kvm" --hostname="fedora-24-kvm" --profile="Fedora-24-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="rhel-5-kvm"    --hostname="rhel-5-kvm"    --profile="RHEL-5-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="rhel-6-kvm"    --hostname="rhel-6-kvm"    --profile="RHEL-6-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="rhel-7-kvm"    --hostname="rhel-7-kvm"    --profile="RHEL-7-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
 
     cobbler-exec system add --name="centos-7-atomic-kvm"  --hostname="centos-atomic-kvm" --profile="CentOS-7-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="centos-7-atomic"'
     cobbler-exec system add --name="fedora-24-atomic-kvm" --hostname="fedora-atomic-kvm" --profile="Fedora-24-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="fedora-24-atomic"'
@@ -132,7 +132,8 @@ addVms() {
     cobbler-exec system add --name="atomic-02" --hostname="atomic-02" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="8192" --virt-bridge="bridge0"
     cobbler-exec system add --name="atomic-03" --hostname="atomic-03" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="8192" --virt-bridge="bridge0"
 
-    cobbler-exec system add --name="jware-workstation" --hostname="jware-workstation"   --profile="Fedora-24-x86_64"        --interface="eth0" --mac-address="00:16:3e:73:6e:6b" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
+    #cobbler-exec system add --name="jware-workstation" --hostname="jware-workstation"   --profile="Fedora-24-x86_64"        --interface="ens3" --mac-address="00:16:3e:73:6e:6b" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4 --ksmeta="networkDevice=ens3"
+    cobbler-exec system add --name="jware-workstation" --hostname="jware-workstation"   --profile="CentOS-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:73:6e:6b" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
     cobbler-exec system add --name="jware-app-server"  --hostname="jware-app-server"   --profile="CentOS-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:17:46:e2" --virt-type="kvm" --virt-file-size="100"  --virt-ram="16384" --virt-bridge="bridge0" --virt-cpus=4
     cobbler-exec system add --name="jware-db"          --hostname="jware-db"   --profile="CentOS-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:00:eb:47" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
 
