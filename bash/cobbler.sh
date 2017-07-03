@@ -15,9 +15,9 @@ addDistros() {
     distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.8-x86_64-bin-DVD1.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1511.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
-    distro-add        RHEL-5-x86_64            /root/distro/iso/rhel-server-5.11-x86_64-dvd.iso               --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        RHEL-6-x86_64            /root/distro/iso/rhel-server-6.8-x86_64-dvd.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-7.3-x86_64-dvd.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-5-x86_64            /root/distro/iso/rhel-server-5.11-x86_64-dvd.iso            --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-6-x86_64            /root/distro/iso/rhel-server-6.9-x86_64-dvd.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-7.3-x86_64-dvd.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
     distro-add        Fedora-25-x86_64         /root/distro/iso/Fedora-Server-dvd-x86_64-25-1.3.iso           --ksmeta="${FEDORA_KSMETA_DATA}"
 
@@ -96,8 +96,8 @@ addProfiles() {
 # Add host definitions...
 # ---------------------------------------------------------
 addHosts() {
-    cobbler-exec system add --name="host-1" --hostname="host-1" --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="00:21:9B:32:5F:78" --virt-type="kvm" --ksmeta='lvmDisks="sda sdb sdc"'
     cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm" --ksmeta='lvmDisks="sda sdb sdc"'
+    cobbler-exec system add --name="host-3" --hostname="host-3" --profile="RHEL-7-x86_64" --interface="eth0" --mac-address="00:21:9B:32:5F:78" --virt-type="kvm" --ksmeta='lvmDisks="sda sdb sdc"'
 }
 
 # ---------------------------------------------------------
