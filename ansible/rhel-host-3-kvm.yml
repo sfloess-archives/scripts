@@ -1,0 +1,11 @@
+---
+
+- name: Setup RHEL KVM host-3
+  hosts: host-3
+
+  roles:
+  - operatingSystem/rhel/subscriptionManager
+  - common/security
+  - common/yum/epel
+  - cloud/kvm
+  - common/autofs

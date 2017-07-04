@@ -1,0 +1,11 @@
+---
+
+- name: Setup RHEL host-1
+  hosts: host-1
+
+  roles:
+  - operatingSystem/rhel/subscriptionManager
+  - common/security
+  - common/yum/epel
+  - common/autofs
+  - cloud/cobbler
