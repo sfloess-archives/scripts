@@ -15,9 +15,9 @@ addDistros() {
     distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.8-x86_64-bin-DVD1.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1511.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
-    distro-add        RHEL-5-x86_64            /root/distro/iso/rhel-server-5.11-x86_64-dvd.iso            --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        RHEL-6-x86_64            /root/distro/iso/rhel-server-6.9-x86_64-dvd.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-7.3-x86_64-dvd.iso             --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-5-x86_64            /root/distro/iso/rhel-server-5.11-x86_64-dvd.iso               --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-6-x86_64            /root/distro/iso/rhel-server-6.9-x86_64-dvd.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-7.3-x86_64-dvd.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
     distro-add        Fedora-25-x86_64         /root/distro/iso/Fedora-Server-dvd-x86_64-25-1.3.iso           --ksmeta="${FEDORA_KSMETA_DATA}"
 
@@ -126,18 +126,9 @@ addVms() {
     cobbler-exec system add --name="neo4j"         --hostname="neo4j"         --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="52:54:00:5d:f3:1c" --virt-type="kvm" --virt-file-size="250" --virt-ram="16384"  --virt-bridge="bridge0" --virt-cpus=4
     cobbler-exec system add --name="pulp"          --hostname="pulp"          --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:4e:fc:64" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
 
-    cobbler-exec system add --name="redhat-solr"   --hostname="redhat-solr"   --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="16384" --virt-bridge="bridge0" --virt-cpus=4
-    cobbler-exec system add --name="redhat-neo4j"  --hostname="redhat-neo4j"  --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="random" --virt-type="kvm" --virt-file-size="250" --virt-ram="16384"  --virt-bridge="bridge0" --virt-cpus=4
-    cobbler-exec system add --name="redhat-pulp"   --hostname="redhat-pulp"   --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
-
-    cobbler-exec system add --name="atomic-01" --hostname="atomic-01" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="8192" --virt-bridge="bridge0"
-    cobbler-exec system add --name="atomic-02" --hostname="atomic-02" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="8192" --virt-bridge="bridge0"
-    cobbler-exec system add --name="atomic-03" --hostname="atomic-03" --profile="RHEL-7-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="100" --virt-ram="8192" --virt-bridge="bridge0"
-
-    #cobbler-exec system add --name="jware-workstation" --hostname="jware-workstation"   --profile="Fedora-25-x86_64"        --interface="ens3" --mac-address="00:16:3e:73:6e:6b" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4 --ksmeta="networkDevice=ens3"
-    cobbler-exec system add --name="jware-workstation" --hostname="jware-workstation"   --profile="CentOS-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:73:6e:6b" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
-    cobbler-exec system add --name="jware-app-server"  --hostname="jware-app-server"   --profile="CentOS-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:17:46:e2" --virt-type="kvm" --virt-file-size="100"  --virt-ram="16384" --virt-bridge="bridge0" --virt-cpus=4
-    cobbler-exec system add --name="jware-db"          --hostname="jware-db"   --profile="CentOS-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:00:eb:47" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="jware-workstation" --hostname="jware-workstation"  --profile="CentOS-7-x86_64"  --interface="eth0" --mac-address="00:16:3e:73:6e:6b" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="jware-app-server"  --hostname="jware-app-server"   --profile="CentOS-7-x86_64"  --interface="eth0" --mac-address="00:16:3e:17:46:e2" --virt-type="kvm" --virt-file-size="100"  --virt-ram="16384" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="jware-db"          --hostname="jware-db"           --profile="CentOS-7-x86_64"  --interface="eth0" --mac-address="00:16:3e:00:eb:47" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
 
 }
 
