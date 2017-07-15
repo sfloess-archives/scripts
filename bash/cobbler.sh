@@ -8,24 +8,26 @@
 addDistros() {
     remove-all
 
+    cobbler signature update
+
     ENTERPISE_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" packages="koan redhat-lsb"'
     FEDORA_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" p0 packages="koan"'
 
     distro-add        CentOS-5-x86_64          /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.8-x86_64-bin-DVD1.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1511.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.9-x86_64-bin-DVD1.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1611.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
     distro-add        RHEL-5-x86_64            /root/distro/iso/rhel-server-5.11-x86_64-dvd.iso               --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        RHEL-6-x86_64            /root/distro/iso/rhel-server-6.9-x86_64-dvd.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        RHEL-7-x86_64            /root/distro/iso/rhel-server-7.3-x86_64-dvd.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
-    distro-add        Fedora-25-x86_64         /root/distro/iso/Fedora-Server-dvd-x86_64-25-1.3.iso           --ksmeta="${FEDORA_KSMETA_DATA}"
+    distro-add        Fedora-26-x86_64         /root/distro/iso/Fedora-Server-dvd-x86_64-26-1.5.iso           --ksmeta="${FEDORA_KSMETA_DATA}"
 
-    distro-add-rhev   RHEVH-7-x86_64           /root/distro/iso/RHVH-4.0-20161018.0-RHVH-x86_64-dvd1.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7" --breed="redhat"
+    distro-add-rhev   RHEVH-4-x86_64           /root/distro/iso/RHVH-4.1-20170706.1-RHVH-x86_64-dvd1.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7" --breed="redhat"
 
     distro-add-atomic CentOS-7-Atomic-x86_64   /root/distro/iso/CentOS-Atomic-Host-7-Installer.iso            --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
-    distro-add-atomic RHEL-7-Atomic-x86_64     /root/distro/iso/rhel-atomic-installer-7.2-10.x86_64.iso       --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
-    distro-add-atomic Fedora-25-Atomic-x86_64  /root/distro/iso/Fedora-Atomic-ostree-x86_64-25-20161121.0.iso --ksmeta="${FEDORA_KSMETA_DATA}"    --arch="x86_64" --os-version="fedora25"
+    distro-add-atomic RHEL-7-Atomic-x86_64     /root/distro/iso/rhel-atomic-installer-7.3.3-1.x86_64.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
+    distro-add-atomic Fedora-26-Atomic-x86_64  /root/distro/iso/Fedora-Atomic-ostree-x86_64-26-20170707.1.iso --ksmeta="${FEDORA_KSMETA_DATA}"    --arch="x86_64" --os-version="fedora26"
 }
 
 # ---------------------------------------------------------
@@ -48,8 +50,8 @@ addRepos() {
     cobbler-exec repo add --mirror-locally="0" --name="Epel-6"               --mirror="http://dl.fedoraproject.org/pub/epel/6/x86_64"
     cobbler-exec repo add --mirror-locally="0" --name="Epel-7"               --mirror="http://dl.fedoraproject.org/pub/epel/7/x86_64"
 
-    cobbler-exec repo add --mirror-locally="0" --name="Fedora-25-everything" --mirror="http://dl.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/os"
-    cobbler-exec repo add --mirror-locally="0" --name="Fedora-25-updates"    --mirror="http://dl.fedoraproject.org/pub/fedora/linux/updates/25/x86_64"
+    cobbler-exec repo add --mirror-locally="0" --name="Fedora-26-everything" --mirror="http://dl.fedoraproject.org/pub/fedora/linux/releases/26/Everything/x86_64/os"
+    cobbler-exec repo add --mirror-locally="0" --name="Fedora-26-updates"    --mirror="http://dl.fedoraproject.org/pub/fedora/linux/updates/26/x86_64"
 }
 
 # ---------------------------------------------------------
@@ -67,7 +69,7 @@ addProfiles() {
     RHEL_6_REPOS="Epel-6"
     RHEL_7_REPOS="Epel-7"
 
-    FEDORA_REPOS="Fedora-25-everything Fedora-25-updates"
+    FEDORA_REPOS="Fedora-26-everything Fedora-26-updates"
 
     STANDARD_KICKSTART="/var/lib/cobbler/kickstarts/flossware_standard.ks"
 
@@ -83,13 +85,13 @@ addProfiles() {
     cobbler-exec profile add --name="RHEL-6-x86_64"           --distro="RHEL-6-x86_64"           --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_6_REPOS}"
     cobbler-exec profile add --name="RHEL-7-x86_64"           --distro="RHEL-7-x86_64"           --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_7_REPOS}"
 
-    cobbler-exec profile add --name="Fedora-25-x86_64"        --distro="Fedora-25-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${FEDORA_REPOS}"
+    cobbler-exec profile add --name="Fedora-26-x86_64"        --distro="Fedora-26-x86_64"        --kickstart="${STANDARD_KICKSTART}" --repos="${FEDORA_REPOS}"
 
-    cobbler-exec profile add --name="RHEVH-7-x86_64"          --distro="RHEVH-7-x86_64"          --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_7_REPOS}"
+    cobbler-exec profile add --name="RHEVH-4-x86_64"          --distro="RHEVH-4-x86_64"          --kickstart="${STANDARD_KICKSTART}" --repos="${RHEL_7_REPOS}"
 
     cobbler-exec profile add --name="CentOS-7-Atomic-x86_64"  --distro="CentOS-7-Atomic-x86_64"  --kickstart="${CENTOS_ATOMIC_KICKSTART}"
     cobbler-exec profile add --name="RHEL-7-Atomic-x86_64"    --distro="RHEL-7-Atomic-x86_64"    --kickstart="${RHEL_ATOMIC_KICKSTART}"
-    cobbler-exec profile add --name="Fedora-25-Atomic-x86_64" --distro="Fedora-25-Atomic-x86_64" --kickstart="${FEDORA_ATOMIC_KICKSTART}"
+    cobbler-exec profile add --name="Fedora-26-Atomic-x86_64" --distro="Fedora-26-Atomic-x86_64" --kickstart="${FEDORA_ATOMIC_KICKSTART}"
 }
 
 # ---------------------------------------------------------
@@ -107,13 +109,13 @@ addVms() {
     cobbler-exec system add --name="centos-5-kvm"  --hostname="centos-5-kvm"  --profile="CentOS-5-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0" 
     cobbler-exec system add --name="centos-6-kvm"  --hostname="centos-6-kvm"  --profile="CentOS-6-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="centos-7-kvm"  --hostname="centos-7-kvm"  --profile="CentOS-7-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
-    cobbler-exec system add --name="fedora-25-kvm" --hostname="fedora-25-kvm" --profile="Fedora-25-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
+    cobbler-exec system add --name="fedora-26-kvm" --hostname="fedora-26-kvm" --profile="Fedora-26-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="rhel-5-kvm"    --hostname="rhel-5-kvm"    --profile="RHEL-5-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="rhel-6-kvm"    --hostname="rhel-6-kvm"    --profile="RHEL-6-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
     cobbler-exec system add --name="rhel-7-kvm"    --hostname="rhel-7-kvm"    --profile="RHEL-7-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="10" --virt-ram="2048" --virt-bridge="bridge0"
 
     cobbler-exec system add --name="centos-7-atomic-kvm"  --hostname="centos-atomic-kvm" --profile="CentOS-7-Atomic-x86_64"  --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="centos-7-atomic"'
-    cobbler-exec system add --name="fedora-25-atomic-kvm" --hostname="fedora-atomic-kvm" --profile="Fedora-25-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="fedora-25-atomic"'
+    cobbler-exec system add --name="fedora-26-atomic-kvm" --hostname="fedora-atomic-kvm" --profile="Fedora-26-Atomic-x86_64" --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="fedora-26-atomic"'
     cobbler-exec system add --name="rhel-7-atomic-kvm"    --hostname="rhel-atomic-kvm"   --profile="RHEL-7-Atomic-x86_64"    --interface="eth0"  --mac-address="random" --virt-type="kvm" --virt-file-size="20" --virt-ram="2048" --virt-bridge="bridge0" --ksmeta='hostname="rhel-7-atomic"'
 
     cobbler-exec system add --name="dmz"   --hostname="dmz"   --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="random" --virt-type="kvm" --virt-file-size="5"  --virt-ram="1024" --virt-bridge="bridge0" --virt-cpus=1
