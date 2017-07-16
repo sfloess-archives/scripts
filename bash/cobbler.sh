@@ -128,6 +128,8 @@ addVms() {
     cobbler-exec system add --name="neo4j"         --hostname="neo4j"         --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="52:54:00:5d:f3:1c" --virt-type="kvm" --virt-file-size="250" --virt-ram="16384"  --virt-bridge="bridge0" --virt-cpus=4
     cobbler-exec system add --name="pulp"          --hostname="pulp"          --profile="RHEL-7-x86_64"        --interface="eth0" --mac-address="00:16:3e:4e:fc:64" --virt-type="kvm" --virt-file-size="100" --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
 
+    cobbler-exec system add --name="fedora-workstation" --hostname="fedora-workstation"  --profile="Fedora-26-x86_64"  --interface="eth0" --mac-address="52:54:00:62:d7:a8" --virt-type="kvm" --virt-file-size="50"  --virt-ram="4096" --virt-bridge="bridge0" --virt-cpus=4
+
     cobbler-exec system add --name="jware-workstation" --hostname="jware-workstation"  --profile="CentOS-7-x86_64"  --interface="eth0" --mac-address="00:16:3e:73:6e:6b" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
     cobbler-exec system add --name="jware-app-server"  --hostname="jware-app-server"   --profile="CentOS-7-x86_64"  --interface="eth0" --mac-address="00:16:3e:17:46:e2" --virt-type="kvm" --virt-file-size="100"  --virt-ram="16384" --virt-bridge="bridge0" --virt-cpus=4
     cobbler-exec system add --name="jware-db"          --hostname="jware-db"           --profile="CentOS-7-x86_64"  --interface="eth0" --mac-address="00:16:3e:00:eb:47" --virt-type="kvm" --virt-file-size="100"  --virt-ram="8196" --virt-bridge="bridge0" --virt-cpus=4
