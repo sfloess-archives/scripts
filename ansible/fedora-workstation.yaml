@@ -1,0 +1,10 @@
+---
+
+- name: Setup host
+  hosts: all
+
+  roles:
+  - common/security
+  - common/yum/epel
+  - common/workstation
+  - common/autofs

@@ -1,0 +1,13 @@
+---
+
+- name: Setup host
+  hosts: all
+  vars:
+    rhel_rhn_pool: 8a85f9815cef6b5f015cf04135146143
+
+  roles:
+  - common/security
+  - operatingSystem/rhel/subscriptionManager
+  - common/yum/epel
+  - common/workstation
+  - common/autofs

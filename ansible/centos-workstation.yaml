@@ -5,7 +5,6 @@
 
   roles:
   - common/security
-  - operatingSystem/rhel/subscriptionManager
   - common/yum/epel
   - common/workstation
   - common/autofs
