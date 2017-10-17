@@ -15,7 +15,7 @@ addDistros() {
 
     distro-add        CentOS-5-x86_64          /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.9-x86_64-bin-DVD1.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
-    distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1611.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
+    distro-add        CentOS-7-x86_64          /root/distro/iso/CentOS-7-x86_64-Everything-1708.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
 
     distro-add        RHEL-5-x86_64            /root/distro/iso/rhel-server-5.11-x86_64-dvd.iso               --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        RHEL-6-x86_64            /root/distro/iso/rhel-server-6.9-x86_64-dvd.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
@@ -27,7 +27,7 @@ addDistros() {
 
     distro-add-atomic CentOS-7-Atomic-x86_64   /root/distro/iso/CentOS-Atomic-Host-7-Installer.iso            --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
     distro-add-atomic RHEL-7-Atomic-x86_64     /root/distro/iso/rhel-atomic-installer-7.4.0-1.x86_64.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
-    distro-add-atomic Fedora-26-Atomic-x86_64  /root/distro/iso/Fedora-Atomic-ostree-x86_64-26-20170723.0.iso --ksmeta="${FEDORA_KSMETA_DATA}"    --arch="x86_64" --os-version="fedora25"
+    distro-add-atomic Fedora-26-Atomic-x86_64  /root/distro/iso/Fedora-Atomic-ostree-x86_64-26-20170920.0.iso --ksmeta="${FEDORA_KSMETA_DATA}"    --arch="x86_64" --os-version="fedora25"
 }
 
 # ---------------------------------------------------------
