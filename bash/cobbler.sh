@@ -23,11 +23,11 @@ addDistros() {
 
     distro-add        Fedora-26-x86_64         /root/distro/iso/Fedora-Server-dvd-x86_64-26-1.5.iso           --ksmeta="${FEDORA_KSMETA_DATA}"
 
-    distro-add-rhev   RHEVH-4-x86_64           /root/distro/iso/RHVH-4.1-20170706.1-RHVH-x86_64-dvd1.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7" --breed="redhat"
-
     distro-add-atomic CentOS-7-Atomic-x86_64   /root/distro/iso/CentOS-Atomic-Host-7-Installer.iso            --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
     distro-add-atomic RHEL-7-Atomic-x86_64     /root/distro/iso/rhel-atomic-installer-7.4.0-1.x86_64.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7"
     distro-add-atomic Fedora-26-Atomic-x86_64  /root/distro/iso/Fedora-Atomic-ostree-x86_64-26-20170920.0.iso --ksmeta="${FEDORA_KSMETA_DATA}"    --arch="x86_64" --os-version="fedora26"
+
+    distro-add-rhev   RHEVH-4-x86_64           /root/distro/iso/RHVH-4.1-20171106.0-RHVH-x86_64-dvd1.iso      --ksmeta="${ENTERPISE_KSMETA_DATA}" --arch="x86_64" --os-version="rhel7" --breed="redhat"
 }
 
 # ---------------------------------------------------------
