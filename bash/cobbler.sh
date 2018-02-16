@@ -34,6 +34,8 @@ addDistros() {
 # Add repo definitions...
 # ---------------------------------------------------------
 addRepos() {
+    repo-remove-all
+
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-extras"      --arch=x86_64 --mirror="http://mirror.centos.org/centos-5/5/extras/x86_64"
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-centosplus"  --arch=x86_64 --mirror="http://mirror.centos.org/centos-5/5/centosplus/x86_64"
     cobbler-exec repo add --mirror-locally="0" --name="CentOS-5-updates"     --arch=x86_64 --mirror="http://mirror.centos.org/centos-5/5/updates/x86_64"
