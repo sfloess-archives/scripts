@@ -106,6 +106,8 @@ addHosts() {
     cobbler-exec system add --name="host-1" --hostname="host-1" --profile="CentOS-7-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta='lvmDisks="sda sdb"'
     cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7-x86_64"   --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"   --ksmeta='lvmDisks="sda sdb sdc"'
     cobbler-exec system add --name="host-3" --hostname="host-3" --profile="RHEL-7-x86_64"   --interface="eth0" --mac-address="00:21:9B:32:5F:78" --virt-type="kvm"   --ksmeta='lvmDisks="sda sdb sdc"'
+
+    cobbler-exec system add --name="laptop" --hostname="laptop" --profile="RHEL-7-x86_64"   --interface="eth0" --mac-address="00:8c:fa:2d:45:05" --virt-type="kvm"
 }
 
 # ---------------------------------------------------------
@@ -152,7 +154,7 @@ addVms() {
 
     cobbler-exec system add --name="fedora-workstation" --hostname="fedora-workstation"  --profile="Fedora-27-x86_64"  --interface="eth0" --mac-address="52:54:00:62:d7:a8" --virt-type="kvm" --virt-file-size="50"  --virt-ram="4096" --virt-bridge="bridge0" --virt-cpus=4
 
-    cobbler-exec system add --name="fedora-workstation-xen" --hostname="fedora-workstation-xen"  --profile="Fedora-27-x86_64"  --interface="eth0" --mac-address="random" --virt-type="xenpv" --virt-file-size="50"  --virt-ram="3192" --virt-bridge="bridge0" --virt-cpus=4
+    cobbler-exec system add --name="fedora-workstation-xen" --hostname="fedora-workstation-xen"  --profile="Fedora-27-x86_64"  --interface="eth0" --mac-address="random" --virt-type="xenpv" --virt-file-size="50"  --virt-ram="2048" --virt-bridge="bridge0" --virt-cpus=4
 }
 
 # ---------------------------------------------------------
