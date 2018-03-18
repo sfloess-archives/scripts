@@ -10,8 +10,8 @@ addDistros() {
 
     #cobbler signature update
 
-    ENTERPISE_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" packages="koan redhat-lsb"'
-    FEDORA_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" p0 packages="koan"'
+    ENTERPISE_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" packages="redhat-lsb"'
+    FEDORA_KSMETA_DATA='auth="--useshadow --enablenis --nisdomain=flossware.com" p0'
 
     distro-add        CentOS-5-x86_64          /root/distro/iso/CentOS-5.11-x86_64-bin-DVD-1of2.iso           --ksmeta="${ENTERPISE_KSMETA_DATA}"
     distro-add        CentOS-6-x86_64          /root/distro/iso/CentOS-6.9-x86_64-bin-DVD1.iso                --ksmeta="${ENTERPISE_KSMETA_DATA}"
@@ -103,7 +103,7 @@ addProfiles() {
 addHosts() {
     STANDARD_KICKSTART="/var/lib/cobbler/kickstarts/flossware_standard.ks"
 
-    cobbler-exec system add --name="host-1" --hostname="host-1" --profile="Fedora-27-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta='lvmDisks="sda sdb"'
+    cobbler-exec system add --name="host-1" --hostname="host-1" --profile="Fedora-27-x86_64" --interface="eth0" --mac-address="00:14:22:2A:AF:F8" --virt-type="xenpv" --ksmeta='lvmDisks="sda sdb"' --kickstart="${STANDARD_KICKSTART}"
     cobbler-exec system add --name="host-2" --hostname="host-2" --profile="RHEL-7-x86_64"   --interface="eth0" --mac-address="00:19:B9:1F:34:B6" --virt-type="kvm"   --ksmeta='lvmDisks="sda sdb sdc"'
     cobbler-exec system add --name="host-3" --hostname="host-3" --profile="RHEL-7-x86_64"   --interface="eth0" --mac-address="00:21:9B:32:5F:78" --virt-type="kvm"   --ksmeta='lvmDisks="sda sdb sdc"'
 
