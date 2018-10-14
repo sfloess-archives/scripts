@@ -8,6 +8,6 @@ start() {
 }
 
 stop() {
-	/mnt/sda1/debian/flossware/bootdown.sh
+	/mnt/sda/debian/flossware/bootdown.sh
 }
 

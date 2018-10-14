@@ -1,6 +1,6 @@
 #!/bin/sh
 
-debdir=/mnt/sda1/debian
+debdir=/mnt/sda0/debian_armhf
 
 mkdir -p $debdir/proc $debdir/sys $debdir/dev $debdir/dev/pts $debdir/tmp
 
@@ -29,12 +29,14 @@ mount -o bind   /tmp  $debdir/tmp
 
 #mount -o bin    /etc/debian_ssh         $debdir/etc/ssh
 
-mount -o bind   /mnt/sda1/nas/home      $debdir/home
-mount -o bind   /mnt/sda1/nas/home/root $debdir/root
-mount -o bind   /mnt/sda1/nas/media     $debdir/opt/media 
-mount -o bind   /mnt/sda1/nas/backups   $debdir/opt/backups
-mount -o bind   /mnt/sda1/nas/shared    $debdir/opt/shared
-mount -o bind   /mnt/sda1/nas           $debdir/opt/nas
+mkdir -p $debdir/opt/media $debdir/opt/backups $debdir/opt/shared $debdir/opt/nas
+
+mount -o bind   /mnt/sda0/nas/home      $debdir/home
+mount -o bind   /mnt/sda0/nas/home/root $debdir/root
+mount -o bind   /mnt/sda0/nas/media     $debdir/opt/media 
+mount -o bind   /mnt/sda0/nas/backups   $debdir/opt/backups
+mount -o bind   /mnt/sda0/nas/shared    $debdir/opt/shared
+mount -o bind   /mnt/sda0/nas           $debdir/opt/nas
 
 # ----------------------------------------------------------------------
 
