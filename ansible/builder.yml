@@ -6,4 +6,4 @@
   roles:
   - operatingSystem/rhel/subscriptionManager
   - common/security
-  - common/openWrtBuildSystem
+  - optware-ng

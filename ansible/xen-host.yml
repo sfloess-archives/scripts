@@ -1,0 +1,10 @@
+---
+
+- name: Setup a Xen host
+  hosts: all
+
+  roles:
+  - common/security
+  - common/yum/epel
+  - common/autofs
+  - operatingSystem/centos/xen

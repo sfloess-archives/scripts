@@ -1,0 +1,18 @@
+---
+
+#
+# sudo ansible-playbook -l [host | group] [-k] cobbler.yml
+#
+
+- name: Setup a cobbler server
+  hosts: all
+
+  roles:
+  - operatingSystem/centos/yum
+  - common/yum/flossware
+  - common/autofs
+
+  tasks:
+  - service:  name=autofs state=restarted
+  - cloud/cobbler
+  - package:  name=flossware-cobbler state=present

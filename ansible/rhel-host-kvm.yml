@@ -1,6 +1,6 @@
 ---
 
-- name: Setup RHEL KVM host
+- name: Setup a RHEL KVM host
   hosts: all
 
   roles:

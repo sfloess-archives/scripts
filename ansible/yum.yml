@@ -1,0 +1,8 @@
+---
+
+- name: Setup yum
+  hosts: all
+
+  roles:
+  - operatingSystem/centos/yum
+  - common/yum/flossware

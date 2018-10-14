@@ -6,5 +6,5 @@
   roles:
   - common/security
   - common/yum/epel
-  - common/workstation
+  - operatingSystem/enterprise/workstation
   - common/autofs

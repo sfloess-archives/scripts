@@ -1,0 +1,7 @@
+---
+
+- name: Setup a host bridge
+  hosts: all
+
+  roles:
+  - common/bridge

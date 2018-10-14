@@ -5,3 +5,6 @@
 
   roles:
   - common/autofs
+
+  tasks:
+  - service:  name=autofs state=restarted

@@ -1,0 +1,8 @@
+---
+
+- name: Setup jware bridge
+  hosts: jware
+  sudo:  yes
+
+  roles:
+  - common/bridge
