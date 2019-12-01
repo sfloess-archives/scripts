@@ -1,0 +1,10 @@
+---
+
+- name: Setup host
+  hosts: controller
+  vars:
+      ansible_python_interpreter: /usr/bin/python3
+
+  roles:
+  - common/security
+  - common/autofs

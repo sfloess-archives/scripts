@@ -1,0 +1,7 @@
+DEFAULT pxeboot
+TIMEOUT 20
+PROMPT 0
+LABEL pxeboot
+	KERNEL vmlinuz
+	APPEND rootflags=loop initrd=initrd.img inst.stage2=hd:LABEL=Fedora-AH-ostree-x86_64-29 quiet
+ONERROR LOCALBOOT 0

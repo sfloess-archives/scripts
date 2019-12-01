@@ -2,8 +2,6 @@
 
 . `dirname ${BASH_SOURCE[0]}`/../flossware-scripts/bash/cobbler-utils.sh
 
-cobbler signature update
-
 distro-add Debian-9-x86_64  /root/distro/iso/debian-9.4.0-amd64-DVD-1.iso
 distro-add Ubuntu-14-x86_64 /root/distro/iso/ubuntu-14.04.5-server-amd64.iso
 

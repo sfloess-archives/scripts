@@ -1,7 +1,7 @@
 ---
 
-- name: Setup RHEL KVM host-3
-  hosts: host-3
+- name: Setup RHEL KVM cloud-host-03
+  hosts: cloud-host-03
 
   roles:
   - operatingSystem/rhel/subscriptionManager
